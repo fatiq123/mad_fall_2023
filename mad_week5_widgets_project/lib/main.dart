@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 import 'package:mad_week5_widgets_project/screens/selection_screen.dart';
 import 'package:mad_week5_widgets_project/styles/button.dart';
-import 'package:mad_week5_widgets_project/widget_list.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,7 +18,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const WidgetListDetails(),
+      home: const SelectionScreen(),
     );
   }
 }

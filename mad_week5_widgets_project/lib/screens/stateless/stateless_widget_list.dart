@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mad_week5_widgets_project/widget_data.dart';
-import 'package:mad_week5_widgets_project/widget_details_page.dart';
+import 'package:mad_week5_widgets_project/data/stateless_widget_data.dart';
+import 'package:mad_week5_widgets_project/screens/stateless/stateless_widget_details_page.dart';
 
 /*
 class WidgetList extends StatefulWidget {
@@ -64,26 +64,26 @@ class _WidgetListState extends State<WidgetList> {
 */
 
 
-class WidgetListDetails extends StatelessWidget {
-  const WidgetListDetails({super.key});
+class StateLessWidgetListDetails extends StatelessWidget {
+  const StateLessWidgetListDetails({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Widget List'),
+        title: const Text('StateLess Widgets List', textAlign: TextAlign.center),
       ),
       body: ListView.builder(
-        itemCount: widgetList.length,
+        itemCount: stateLessWidgetList.length,
         itemBuilder: (context, index) {
           return ListTile(
-            title: Text(widgetList[index].name),
+            title: Text(stateLessWidgetList[index].name),
             onTap: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => WidgetDetailsScreen(
-                    widgetData: widgetList[index],
+                  builder: (context) => StateLessWidgetDetailsScreen(
+                    widgetData: stateLessWidgetList[index],
                   ),
                 ),
               );

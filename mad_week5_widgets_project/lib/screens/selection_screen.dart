@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:mad_week5_widgets_project/screens/stateful/stateful_widget_list.dart';
+import 'package:mad_week5_widgets_project/screens/stateless/stateless_widget_list.dart';
 
 import '../styles/button.dart';
 
@@ -20,7 +22,11 @@ class SelectionScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Lottie.asset("assets/animations/flutter_lotie.json",
-                      fit: BoxFit.cover, reverse: true, repeat: true, width: 250, height: 250),
+                      fit: BoxFit.cover,
+                      reverse: true,
+                      repeat: true,
+                      width: 250,
+                      height: 250),
                 ],
               ),
               const SizedBox(height: 50),
@@ -33,7 +39,8 @@ class SelectionScreen extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const SelectionScreen(),
+                          builder: (context) =>
+                              const StateLessWidgetListDetails(),
                         ),
                       );
                     },
@@ -42,7 +49,14 @@ class SelectionScreen extends StatelessWidget {
                   const SizedBox(height: 20),
                   ElevatedButton(
                     style: buttonPrimary,
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const StateFulWidgetListDetails(),
+                        ),
+                      );
+                    },
                     child: const Text("Stateful Widgets"),
                   ),
                 ],

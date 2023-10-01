@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:mad_week5_widgets_project/widget_data.dart';
+import 'package:mad_week5_widgets_project/data/stateless_widget_data.dart';
 
-class WidgetDetailsScreen extends StatelessWidget {
-  const WidgetDetailsScreen({super.key, required this.widgetData});
+class StateLessWidgetDetailsScreen extends StatelessWidget {
+  const StateLessWidgetDetailsScreen({super.key, required this.widgetData});
 
-  final WidgetData widgetData;
+  final StateLessWidgetData widgetData;
 
   @override
   Widget build(BuildContext context) {
