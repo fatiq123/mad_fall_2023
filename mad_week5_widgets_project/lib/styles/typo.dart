@@ -1,8 +1,10 @@
 import 'dart:ui';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-TextStyle headerOne = const TextStyle(
+TextStyle headerOne = GoogleFonts.poppins(
   color: Colors.black,
   fontSize: 16,
   fontWeight: FontWeight.w700,
