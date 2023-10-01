@@ -13,18 +13,64 @@ class WidgetDetailsScreen extends StatelessWidget {
         title: Text(widgetData.name),
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(widgetData.description, style: const TextStyle(fontSize: 18)),
+            Card(
+              elevation: 4,
+              color: Colors.blue, // Change the color as desired
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'Description:',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Text(
+                      widgetData.description,
+                      style: const TextStyle(
+                        fontSize: 18,
+                        color: Colors.white, // Change the text color
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
             const SizedBox(height: 20),
-            const Text("Code: ",
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-            const SizedBox(height: 10),
-            Text(
-              widgetData.code,
-              style: const TextStyle(fontSize: 16),
+            Card(
+              elevation: 4,
+              color: Colors.green, // Change the color as desired
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'Code:',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Text(
+                      widgetData.code,
+                      style: const TextStyle(
+                        fontSize: 16,
+                        color: Colors.white, // Change the text color
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
           ],
         ),
