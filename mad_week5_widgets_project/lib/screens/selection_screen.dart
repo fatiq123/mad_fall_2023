@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:mad_week5_widgets_project/screens/stateful/stateful_widget_list.dart';
 import 'package:mad_week5_widgets_project/screens/stateless/stateless_widget_list.dart';
@@ -44,7 +45,10 @@ class SelectionScreen extends StatelessWidget {
                         ),
                       );
                     },
-                    child: const Text("Stateless Widgets"),
+                    child: const Text(
+                      "Stateless Widgets",
+                      style: TextStyle(color: Colors.black),
+                    ),
                   ),
                   const SizedBox(height: 20),
                   ElevatedButton(
@@ -53,11 +57,15 @@ class SelectionScreen extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const StateFulWidgetListDetails(),
+                          builder: (context) =>
+                              const StateFulWidgetListDetails(),
                         ),
                       );
                     },
-                    child: const Text("Stateful Widgets"),
+                    child: const Text(
+                      "Stateful Widgets",
+                      style: TextStyle(color: Colors.black),
+                    ),
                   ),
                 ],
               )
