@@ -368,7 +368,239 @@ class _ElevatedButtonExampleState extends State<ElevatedButtonExample> {
 
       '''
   ),
+  StateFulWidgetData(
+      'GridView',
+      'A scrollable, 2D array of widgets.',
+      '''
+      GridView.count(
+  primary: false,
+  padding: const EdgeInsets.all(20),
+  crossAxisSpacing: 10,
+  mainAxisSpacing: 10,
+  crossAxisCount: 2,
+  children: <Widget>[
+    Container(
+      padding: const EdgeInsets.all(8),
+      color: Colors.teal[100],
+      child: const Text("He'd have you all unravel at the"),
+    ),
+    Container(
+      padding: const EdgeInsets.all(8),
+      color: Colors.teal[200],
+      child: const Text('Heed not the rabble'),
+    ),
+    Container(
+      padding: const EdgeInsets.all(8),
+      color: Colors.teal[300],
+      child: const Text('Sound of screams but the'),
+    ),
+    Container(
+      padding: const EdgeInsets.all(8),
+      color: Colors.teal[400],
+      child: const Text('Who scream'),
+    ),
+    Container(
+      padding: const EdgeInsets.all(8),
+      color: Colors.teal[500],
+      child: const Text('Revolution is coming...'),
+    ),
+    Container(
+      padding: const EdgeInsets.all(8),
+      color: Colors.teal[600],
+      child: const Text('Revolution, they...'),
+    ),
+  ],
+)
+      '''
+  ),
+  StateFulWidgetData(
+      'PopupMenuButton',
+      'Displays a menu when pressed and calls onSelected when the menu is dismissed because an item was selected. The value passed to onSelected is the value of the selected menu item.',
+      '''
+      class PopupMenuExample extends StatefulWidget {
+  const PopupMenuExample({super.key});
 
+  @override
+  State<PopupMenuExample> createState() => _PopupMenuExampleState();
+}
 
+class _PopupMenuExampleState extends State<PopupMenuExample> {
+  SampleItem? selectedMenu;
 
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('PopupMenuButton')),
+      body: Center(
+        child: PopupMenuButton<SampleItem>(
+          initialValue: selectedMenu,
+          // Callback that sets the selected popup menu item.
+          onSelected: (SampleItem item) {
+            setState(() {
+              selectedMenu = item;
+            });
+          },
+          itemBuilder: (BuildContext context) => <PopupMenuEntry<SampleItem>>[
+            const PopupMenuItem<SampleItem>(
+              value: SampleItem.itemOne,
+              child: Text('Item 1'),
+            ),
+            const PopupMenuItem<SampleItem>(
+              value: SampleItem.itemTwo,
+              child: Text('Item 2'),
+            ),
+            const PopupMenuItem<SampleItem>(
+              value: SampleItem.itemThree,
+              child: Text('Item 3'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+      '''
+  ),
+  StateFulWidgetData(
+      'DropDownButton',
+      'A dropdown button lets the user select from a number of items. The button shows the currently selected item as well as an arrow that opens a menu for selecting another item.',
+      '''
+      const List<String> list = <String>['One', 'Two', 'Three', 'Four'];
+
+void main() => runApp(const DropdownButtonApp());
+
+class DropdownButtonApp extends StatelessWidget {
+  const DropdownButtonApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(title: const Text('DropdownButton Sample')),
+        body: const Center(
+          child: DropdownButtonExample(),
+        ),
+      ),
+    );
+  }
+}
+
+class DropdownButtonExample extends StatefulWidget {
+  const DropdownButtonExample({super.key});
+
+  @override
+  State<DropdownButtonExample> createState() => _DropdownButtonExampleState();
+}
+
+class _DropdownButtonExampleState extends State<DropdownButtonExample> {
+  String dropdownValue = list.first;
+
+  @override
+  Widget build(BuildContext context) {
+    return DropdownButton<String>(
+      value: dropdownValue,
+      icon: const Icon(Icons.arrow_downward),
+      elevation: 16,
+      style: const TextStyle(color: Colors.deepPurple),
+      underline: Container(
+        height: 2,
+        color: Colors.deepPurpleAccent,
+      ),
+      onChanged: (String? value) {
+        // This is called when the user selects an item.
+        setState(() {
+          dropdownValue = value!;
+        });
+      },
+      items: list.map<DropdownMenuItem<String>>((String value) {
+        return DropdownMenuItem<String>(
+          value: value,
+          child: Text(value),
+        );
+      }).toList(),
+    );
+  }
+}
+
+      '''
+  ),
+  StateFulWidgetData(
+      'Expansion Panel List',
+      'A material expansion panel list that lays out its children and animates expansions.',
+      '''
+      // stores ExpansionPanel state information
+class Item {
+  Item({
+    required this.expandedValue,
+    required this.headerValue,
+    this.isExpanded = false,
+  });
+
+  String expandedValue;
+  String headerValue;
+  bool isExpanded;
+}
+
+List<Item> generateItems(int numberOfItems) {
+  return List<Item>.generate(numberOfItems, (int index) {
+    return Item(
+      headerValue: 'Panel $index',
+      expandedValue: 'This is item number $index',
+    );
+  });
+}
+
+class ExpansionPanelListExample extends StatefulWidget {
+  const ExpansionPanelListExample({super.key});
+
+  @override
+  State<ExpansionPanelListExample> createState() =>
+      _ExpansionPanelListExampleState();
+}
+
+class _ExpansionPanelListExampleState extends State<ExpansionPanelListExample> {
+  final List<Item> _data = generateItems(8);
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Container(
+        child: _buildPanel(),
+      ),
+    );
+  }
+
+  Widget _buildPanel() {
+    return ExpansionPanelList(
+      expansionCallback: (int index, bool isExpanded) {
+        setState(() {
+          _data[index].isExpanded = !isExpanded;
+        });
+      },
+      children: _data.map<ExpansionPanel>((Item item) {
+        return ExpansionPanel(
+          headerBuilder: (BuildContext context, bool isExpanded) {
+            return ListTile(
+              title: Text(item.headerValue),
+            );
+          },
+          body: ListTile(
+              title: Text(item.expandedValue),
+              subtitle:
+                  const Text('To delete this panel, tap the trash can icon'),
+              trailing: const Icon(Icons.delete),
+              onTap: () {
+                setState(() {
+                  _data.removeWhere((Item currentItem) => item == currentItem);
+                });
+              }),
+          isExpanded: item.isExpanded,
+        );
+      }).toList(),
+    );
+  }
+}
+
+      '''
+  ),
 ];

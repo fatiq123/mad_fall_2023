@@ -675,4 +675,161 @@ class _RadioListTileExampleState extends State<RadioListTileExample> {
 
       '''
   ),
+  StateLessWidgetData(
+      'Stack Widget',
+      'A widget that positions its children relative to the edges of its box. This class is useful if you want to overlap several children in a simple way, for example having some text and an image, overlaid with a gradient and a button attached to the bottom.',
+      '''
+      Stack(
+  children: <Widget>[
+    Container(
+      width: 100,
+      height: 100,
+      color: Colors.red,
+    ),
+    Container(
+      width: 90,
+      height: 90,
+      color: Colors.green,
+    ),
+    Container(
+      width: 80,
+      height: 80,
+      color: Colors.blue,
+    ),
+  ],
+)
+      '''
+  ),
+  StateLessWidgetData(
+      'Box Decoration Widget',
+      'An immutable description of how to paint a box.',
+      '''
+      Container(
+  decoration: BoxDecoration(
+    color: const Color(0xff7c94b6),
+    image: const DecorationImage(
+      image: NetworkImage('https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg'),
+      fit: BoxFit.cover,
+    ),
+    border: Border.all(
+      width: 8,
+    ),
+    borderRadius: BorderRadius.circular(12),
+  ),
+)
+      '''
+  ),
+  StateLessWidgetData(
+      'ToggleButton Widget',
+      'The list of children are laid out along direction. The state of each button is controlled by isSelected, which is a list of bools that determine if a button is in an unselected or selected state. They are both correlated by their index in the list. The length of isSelected has to match the length of the children list.',
+      '''
+      class _CustomToggleButtonsState extends State<CustomToggleButtons> {
+  final List<bool> _selections = [true, false, false];
+
+  @override
+  Widget build(BuildContext context) {
+    return ToggleButtons(
+      isSelected: _selections,
+      onPressed: (int index) {
+        setState(() {
+          _selections[index] = !_selections[index];
+        });
+      },
+      children: const [
+        Icon(Icons.star),
+        Icon(Icons.favorite),
+        Icon(Icons.thumb_up),
+      ],
+    );
+  }
+}
+
+      '''
+  ),
+  StateLessWidgetData(
+      'PageView Widget',
+      'A scrollable list that works page by page.Each child of a page view is forced to be the same size as the viewport.',
+      '''
+      class PageViewExample extends StatelessWidget {
+  const PageViewExample({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final PageController controller = PageController();
+    return PageView(
+      /// [PageView.scrollDirection] defaults to [Axis.horizontal].
+      /// Use [Axis.vertical] to scroll vertically.
+      controller: controller,
+      children: const <Widget>[
+        Center(
+          child: Text('First Page'),
+        ),
+        Center(
+          child: Text('Second Page'),
+        ),
+        Center(
+          child: Text('Third Page'),
+        ),
+      ],
+    );
+  }
+}
+      '''),
+  StateLessWidgetData(
+      'Stepper Widget',
+      'A material stepper widget that displays progress through a sequence of steps. Steppers are particularly useful in the case of forms where one step requires the completion of another one, or where multiple steps need to be completed in order to submit the whole form.',
+      '''
+      class StepperExample extends StatefulWidget {
+  const StepperExample({super.key});
+
+  @override
+  State<StepperExample> createState() => _StepperExampleState();
+}
+
+class _StepperExampleState extends State<StepperExample> {
+  int _index = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Stepper(
+      currentStep: _index,
+      onStepCancel: () {
+        if (_index > 0) {
+          setState(() {
+            _index -= 1;
+          });
+        }
+      },
+      onStepContinue: () {
+        if (_index <= 0) {
+          setState(() {
+            _index += 1;
+          });
+        }
+      },
+      onStepTapped: (int index) {
+        setState(() {
+          _index = index;
+        });
+      },
+      steps: <Step>[
+        Step(
+          title: const Text('Step 1 title'),
+          content: Container(
+            alignment: Alignment.centerLeft,
+            child: const Text('Content for Step 1'),
+          ),
+        ),
+        const Step(
+          title: Text('Step 2 title'),
+          content: Text('Content for Step 2'),
+        ),
+      ],
+    );
+  }
+}
+
+      '''
+  ),
+
 ];
