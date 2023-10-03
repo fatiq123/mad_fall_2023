@@ -403,5 +403,276 @@ class _ListTileExampleState extends State<ListTileExample>
 )
       '''
   ),
-  StateLessWidgetData('', '', ''''''),
+  StateLessWidgetData(
+      'Circular Avatar',
+      '''
+      Typically used with a user's profile image, or, in the absence of such an image, the user's initials. A given user's initials should always be paired with the same background color, for consistency.
+      ''',
+      '''
+      CircleAvatar(
+        backgroundColor: Colors.brown.shade800,
+        child: const Text('AH'),
+      )
+      '''
+  ),
+  StateLessWidgetData(
+      'Sized Box',
+      '''
+      A box with a specified size.
+      If either the width or height is null, this widget will try to size itself to match the child's size in that dimension. If the child's size depends on the size of its parent, the height and width must be provided.
+      ''',
+      '''
+      const SizedBox(
+  width: 200.0,
+  height: 300.0,
+  child: Card(child: Text('Hello World!')),
+)
+      '''
+  ),
+  StateLessWidgetData(
+      'Circular Progress Indicator',
+      '''
+      A Material Design circular progress indicator, which spins to indicate that the application is busy.
+      ''',
+      '''
+     import 'package:flutter/material.dart';
+
+/// Flutter code sample for [CircularProgressIndicator].
+
+void main() => runApp(const ProgressIndicatorApp());
+
+class ProgressIndicatorApp extends StatelessWidget {
+  const ProgressIndicatorApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      home: ProgressIndicatorExample(),
+    );
+  }
+}
+
+class ProgressIndicatorExample extends StatefulWidget {
+  const ProgressIndicatorExample({super.key});
+
+  @override
+  State<ProgressIndicatorExample> createState() =>
+      _ProgressIndicatorExampleState();
+}
+
+class _ProgressIndicatorExampleState extends State<ProgressIndicatorExample>
+    with TickerProviderStateMixin {
+  late AnimationController controller;
+
+  @override
+  void initState() {
+    controller = AnimationController(
+      /// [AnimationController]s can be created with `vsync: this` because of
+      /// [TickerProviderStateMixin].
+      vsync: this,
+      duration: const Duration(seconds: 5),
+    )..addListener(() {
+        setState(() {});
+      });
+    controller.repeat(reverse: true);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            Text(
+              'Circular progress indicator with a fixed color',
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
+            CircularProgressIndicator(
+              value: controller.value,
+              semanticsLabel: 'Circular progress indicator',
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+      '''
+  ),
+  StateLessWidgetData(
+      'Divider Widget',
+      '''
+      A thin horizontal line, with padding on either side.
+      ''',
+      '''
+       const Divider(
+            height: 20,
+            thickness: 5,
+            indent: 20,
+            endIndent: 0,
+            color: Colors.black,
+          ),
+      '''
+  ),
+  StateLessWidgetData(
+      'IconButton Widget',
+      '''
+      An icon button is a picture printed on a Material widget that reacts to touches by filling with color (ink).
+      Icon buttons are commonly used in the AppBar.actions field, but they can be used in many other places as well.
+      If the onPressed callback is null, then the button will be disabled and will not react to touch.
+      ''',
+      '''
+      IconButton(
+          icon: const Icon(Icons.volume_up),
+          tooltip: 'Increase volume by 10',
+          onPressed: () {
+            setState(() {
+              _volume += 10;
+            });
+          },
+        ),
+      '''
+  ),
+  StateLessWidgetData(
+      'Drawer Widget',
+      'A Material Design panel that slides in horizontally from the edge of a Scaffold to show navigation links in an application.',
+      '''
+      Scaffold(
+  appBar: AppBar(
+    title: const Text('Drawer Demo'),
+  ),
+  drawer: Drawer(
+    child: ListView(
+      padding: EdgeInsets.zero,
+      children: const <Widget>[
+        DrawerHeader(
+          decoration: BoxDecoration(
+            color: Colors.blue,
+          ),
+          child: Text(
+            'Drawer Header',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 24,
+            ),
+          ),
+        ),
+        ListTile(
+          leading: Icon(Icons.message),
+          title: Text('Messages'),
+        ),
+        ListTile(
+          leading: Icon(Icons.account_circle),
+          title: Text('Profile'),
+        ),
+        ListTile(
+          leading: Icon(Icons.settings),
+          title: Text('Settings'),
+        ),
+      ],
+    ),
+  ),
+)
+      '''
+  ),
+  StateLessWidgetData(
+      'RadioListTile Widget',
+      'A ListTile with a Radio. In other words, a radio button with a label.The entire list tile is interactive: tapping anywhere in the tile selects the radio button.',
+      '''
+      import 'package:flutter/material.dart';
+
+/// Flutter code sample for [RadioListTile].
+
+void main() => runApp(const RadioListTileApp());
+
+class RadioListTileApp extends StatelessWidget {
+  const RadioListTileApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: ThemeData(useMaterial3: true),
+      home: Scaffold(
+        appBar: AppBar(title: const Text('RadioListTile Sample')),
+        body: const RadioListTileExample(),
+      ),
+    );
+  }
+}
+
+enum SingingCharacter { lafayette, jefferson }
+
+class RadioListTileExample extends StatefulWidget {
+  const RadioListTileExample({super.key});
+
+  @override
+  State<RadioListTileExample> createState() => _RadioListTileExampleState();
+}
+
+class _RadioListTileExampleState extends State<RadioListTileExample> {
+  SingingCharacter? _character = SingingCharacter.lafayette;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        RadioListTile<SingingCharacter>(
+          title: const Text('Lafayette'),
+          value: SingingCharacter.lafayette,
+          groupValue: _character,
+          onChanged: (SingingCharacter? value) {
+            setState(() {
+              _character = value;
+            });
+          },
+        ),
+        RadioListTile<SingingCharacter>(
+          title: const Text('Thomas Jefferson'),
+          value: SingingCharacter.jefferson,
+          groupValue: _character,
+          onChanged: (SingingCharacter? value) {
+            setState(() {
+              _character = value;
+            });
+          },
+        ),
+      ],
+    );
+  }
+}
+
+      '''
+  ),
+  StateLessWidgetData(
+      'DataPickerDialog',
+      'It is used to pick date. Below is the code for custom dialog picker',
+      '''
+      class CustomDatePicker extends StatelessWidget {
+  const CustomDatePicker({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return DatePickerDialog(
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2023),
+      lastDate: DateTime(2024),
+      /*onDateSet: (date) {
+        // Handle date selection
+      },*/
+    );
+  }
+}
+
+      '''
+  ),
 ];
