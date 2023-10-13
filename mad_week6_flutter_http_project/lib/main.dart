@@ -1,14 +1,19 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    const MaterialApp(
+      home: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatefulWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   State<MyApp> createState() => _MyAppState();
@@ -24,7 +29,7 @@ class _MyAppState extends State<MyApp> {
     if (name.text != '' || email.text != '' || password.text != '') {
 
       try {
-        String uri = 'http://localhost/practice/insert_record.php';
+        String uri = 'http://10.0.2.2/practice/insert_record.php';
 
         var res = await http.post(Uri.parse(uri), body: {
           "name": name.text,
@@ -35,6 +40,20 @@ class _MyAppState extends State<MyApp> {
         var response = jsonDecode(res.body);
         if (response['success'] == 'true') {
           print('Success. Record Inserted!');
+
+          Fluttertoast.showToast(
+          msg: "Record Inserted",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0
+      );
+
+          name.text = "";
+          email.text = "";
+          password.text = "";
         } else {
           print('Error!');
         }
@@ -45,6 +64,15 @@ class _MyAppState extends State<MyApp> {
 
     } else {
       print('Please Fill the fields');
+      Fluttertoast.showToast(
+          msg: "Fill all fields",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0
+      );
     }
   }
 
