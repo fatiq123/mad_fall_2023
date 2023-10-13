@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import 'package:images_using_php_api/view_image.dart';
 
@@ -69,7 +70,7 @@ class _HomePageState extends State<HomePage> {
 
   Future<void> uploadImage() async {
     try {
-      String uri = "https://10.0.2.2/flutter_image_project/upload_image.php";
+      String uri = "http://10.0.2.2/flutter_image_project/upload_image.php";
 
       var res = await http.post(Uri.parse(uri), body: {
         "caption": caption.text,
@@ -81,6 +82,16 @@ class _HomePageState extends State<HomePage> {
 
       if (response['success'] == 'true') {
         print('uploaded');
+        
+        Fluttertoast.showToast(
+        msg: "Image Uploaded",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16.0
+    );
       } else {
         print('issue');
       }

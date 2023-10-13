@@ -50,10 +50,10 @@ class _ViewImageState extends State<ViewImage> {
             child: Column(
               children: [
                 Container(
-                    child: Expanded(
+                  child: Expanded(
                   child: Image.network(
                       "http://10.0.2.2/flutter_image_project/" +
-                          record[index]['image_path']),
+                          record[index]['1']),
                 )),
                 Container(
                   child: Text(record[index]['caption']),
