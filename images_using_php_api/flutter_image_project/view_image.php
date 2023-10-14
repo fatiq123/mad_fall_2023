@@ -4,7 +4,7 @@ include("dbconnection.php");
 $con = dbconnection();
 
 
-$query = "SELECT `id`, `caption` FROM `image`";
+$query = "SELECT `id`, `caption`, `image_path` FROM `image`";
 $exe = mysqli_query($con, $query);
 $arr = [];
 

@@ -111,10 +111,13 @@ class _HomePageState extends State<HomePage> {
           const SizedBox(
             height: 20,
           ),
-          TextFormField(
-            controller: caption,
-            decoration: const InputDecoration(
-                border: OutlineInputBorder(), label: Text('Enter the caption')),
+          Padding(
+            padding: EdgeInsets.all(20),
+            child: TextFormField(
+              controller: caption,
+              decoration: const InputDecoration(
+                  border: OutlineInputBorder(), label: Text('Enter the caption')),
+            ),
           ),
           const SizedBox(
             height: 20,
@@ -122,7 +125,7 @@ class _HomePageState extends State<HomePage> {
           // ternary operator condition for image path whether choosen or not ---> if imagepath is not null then show image if null then show text
           imagePath != null
               ? Image.file(imagePath!)
-              : const Text('Image not choosen yet'),
+              : const Text('Image not choosen yet !', style: TextStyle(fontSize: 20, color: Colors.purple),),
           const SizedBox(
             height: 20,
           ),

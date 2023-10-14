@@ -10,17 +10,18 @@ if (isset($_POST['caption'])) {
     return;
 }
 
+if (isset($_POST['data'])) {
+    $data = $_POST['data'];
+} else {
+    return;
+}
+
 if (isset($_POST['name'])) {
     $name = $_POST['name'];
 } else {
     return;
 }
 
-if (isset($_POST['data'])) {
-    $data = $_POST['data'];
-} else {
-    return;
-}
 
 $path = "upload/$name";
 

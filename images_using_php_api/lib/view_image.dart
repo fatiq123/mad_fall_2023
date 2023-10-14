@@ -53,7 +53,7 @@ class _ViewImageState extends State<ViewImage> {
                   child: Expanded(
                   child: Image.network(
                       "http://10.0.2.2/flutter_image_project/" +
-                          record[index]['1']),
+                          record[index]['image_path']),
                 )),
                 Container(
                   child: Text(record[index]['caption']),
