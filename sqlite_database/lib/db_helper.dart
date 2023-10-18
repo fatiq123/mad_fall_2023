@@ -49,7 +49,7 @@ class SQLHelper {
       'createdAt': DateTime.now().toString()
     };
 
-    final result = db.update('data', data, where: 'id = ?', whereArgs: [id]);
+    final result = await db.update('data', data, where: 'id = ?', whereArgs: [id]);
     return result;
   }
 
