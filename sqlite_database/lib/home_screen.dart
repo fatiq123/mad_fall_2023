@@ -29,15 +29,6 @@ class _HomeScreenState extends State<HomeScreen> {
   final TextEditingController _title = TextEditingController();
   final TextEditingController _description = TextEditingController();
 
-  // Future<void> _addData() async {
-  //   await SQLHelper.createData(_title.text, _description.text);
-  //   _refreshData();
-  // }
-
-  // Future<void> _updateData(int id) async {
-  //   await SQLHelper.updateData(id, _title.text, _description.text);
-  //   _refreshData();
-  // }
 
   Future<void> _addData() async {
     await SQLHelper.createData(_title.text, _description.text);
