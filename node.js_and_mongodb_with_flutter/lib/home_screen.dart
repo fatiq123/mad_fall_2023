@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nodejs_backend_with_flutter/create.dart';
+import 'package:nodejs_backend_with_flutter/fetch_data.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -25,7 +26,10 @@ class _HomeScreenState extends State<HomeScreen> {
             child: const Text('CREATE'),
           ),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const FetchData(),));
+            },
             child: const Text('READ'),
           ),
           ElevatedButton(
