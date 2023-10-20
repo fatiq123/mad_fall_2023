@@ -29,14 +29,34 @@ class _HomeScreenState extends State<HomeScreen> {
   final TextEditingController _title = TextEditingController();
   final TextEditingController _description = TextEditingController();
 
+  // Future<void> _addData() async {
+  //   await SQLHelper.createData(_title.text, _description.text);
+  //   _refreshData();
+  // }
+
+  // Future<void> _updateData(int id) async {
+  //   await SQLHelper.updateData(id, _title.text, _description.text);
+  //   _refreshData();
+  // }
+
   Future<void> _addData() async {
     await SQLHelper.createData(_title.text, _description.text);
-    _refreshData();
+    _refreshData(); // Fetch updated data from the database
+    setState(() {
+      // Clear the text fields
+      _title.text = '';
+      _description.text = '';
+    });
   }
 
   Future<void> _updateData(int id) async {
     await SQLHelper.updateData(id, _title.text, _description.text);
-    _refreshData();
+    _refreshData(); // Fetch updated data from the database
+    setState(() {
+      // Clear the text fields
+      _title.text = '';
+      _description.text = '';
+    });
   }
 
   void _deleteData(int id) async {
@@ -52,7 +72,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   // helper function
   void showBottomSheet(int? id) async {
-
     // if id is not null then it will update otherwise it will add new data
     // when edit icon will be pressed then id will be given to showBottomSheet and it will edit
     if (id != null) {
@@ -139,7 +158,7 @@ class _HomeScreenState extends State<HomeScreen> {
           : ListView.builder(
               itemCount: _allData.length,
               itemBuilder: (context, index) {
-                Card(
+                return Card(
                   margin: const EdgeInsets.all(10),
                   child: ListTile(
                     title: Padding(
