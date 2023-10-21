@@ -24,75 +24,79 @@ class Api {
     }
   }
 
-  // static getProduct() async {
-  //   List<Product> productData =
-  //       []; // to store product data in list which if of type class
-
-  //   try {
-  //     final url = Uri.parse("${baseUrl}get_product");
-
-  //     var response = await http.get(url);
-
-  //     if (response.statusCode == 200) {
-  //       var data = jsonDecode(response.body);
-
-  //       // traverse to full list using foreach loop to get every product data
-  //       data['products'].forEach(
-  //         (value) => productData.add(
-  //           Product(
-  //             name: value['pname'],
-  //             price: value['pprice'],
-  //             description: value['pdescription'],
-  //           ),
-  //         ),
-  //       );
-
-  //       print(data);
-  //       print('Data fetched successfuly');
-
-  //       return productData;
-  //     } else {
-  //       print('Failed to get response');
-  //       return [];  // return an empty list if statusCode is not 200
-  //     }
-  //   } catch (e) {
-  //     print(e.toString());
-  //   }
-  // }
-
-  static Future<List<Product>> getProduct() async {
-    List<Product> productData = [];
+  static getProduct() async {
+    List<Product> productData =
+        []; // to store product data in list which if of type class
 
     try {
       final url = Uri.parse("${baseUrl}get_product");
+
       var response = await http.get(url);
 
       if (response.statusCode == 200) {
         var data = jsonDecode(response.body);
 
-        // Traverse the list of products and add them to the productData list
-        for (var value in data['products']) {
-          productData.add(
+        int idd = int.parse(data['id']);
+
+        // traverse to full list using foreach loop to get every product data
+        data['products'].forEach(
+          (value) => productData.add(
             Product(
               name: value['pname'],
               price: value['pprice'],
               description: value['pdescription'],
-              id: value['id'].toString(),
+              // id: value['id'],
+              id: idd.toString()
             ),
-          );
-        }
+          ),
+        );
 
-        print('Data fetched successfully');
+        print(data);
+        print('Data fetched successfuly');
+
         return productData;
       } else {
-        print('Failed to get a 200 status code');
-        return []; // Return an empty list if the status code is not 200
+        print('Failed to get response');
+        return [];  // return an empty list if statusCode is not 200
       }
     } catch (e) {
       print(e.toString());
-      return []; // Return an empty list on error
     }
   }
+
+  // static Future<List<Product>> getProduct() async {
+  //   List<Product> productData = [];
+
+  //   try {
+  //     final url = Uri.parse("${baseUrl}get_product");
+  //     var response = await http.get(url);
+
+  //     if (response.statusCode == 200) {
+  //       var data = jsonDecode(response.body);
+
+  //       // Traverse the list of products and add them to the productData list
+  //       for (var value in data['products']) {
+  //         productData.add(
+  //           Product(
+  //             name: value['pname'],
+  //             price: value['pprice'],
+  //             description: value['pdescription'],
+  //             id: value['id'].toString(),
+  //           ),
+  //         );
+  //       }
+
+  //       print('Data fetched successfully');
+  //       return productData;
+  //     } else {
+  //       print('Failed to get a 200 status code');
+  //       return []; // Return an empty list if the status code is not 200
+  //     }
+  //   } catch (e) {
+  //     print(e.toString());
+  //     return []; // Return an empty list on error
+  //   }
+  // }
 
   // function to update record
   static updateProduct(id, body) async {
