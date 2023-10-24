@@ -124,7 +124,7 @@ class _HomePageState extends State<HomePage> {
           ),
           // ternary operator condition for image path whether choosen or not ---> if imagepath is not null then show image if null then show text
           imagePath != null
-              ? Image.file(imagePath!)
+              ? Expanded(child: Image.file(imagePath!))
               : const Text('Image not choosen yet !', style: TextStyle(fontSize: 20, color: Colors.purple),),
           const SizedBox(
             height: 20,
