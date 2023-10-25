@@ -19,6 +19,8 @@ class _HomeScreenState extends State<HomeScreen> {
         title: const Text('node.js and mongodb'),
       ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           ElevatedButton(
             onPressed: () {

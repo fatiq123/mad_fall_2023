@@ -14,7 +14,8 @@ class UpdateScreen extends StatelessWidget {
         title: const Text('Update Product'),
       ),
       body: FutureBuilder(
-        future: Api.getProduct(),
+        // future: Api.getProduct(),
+        future: Api.getProducts(),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(

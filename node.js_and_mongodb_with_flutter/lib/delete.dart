@@ -18,7 +18,8 @@ class _DeleteScreenState extends State<DeleteScreen> {
         title: const Text('Delete Product'),
       ),
       body: FutureBuilder(
-        future: Api.getProduct(),
+        // future: Api.getProduct(),
+        future: Api.getProducts(),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(
@@ -44,22 +45,54 @@ class _DeleteScreenState extends State<DeleteScreen> {
                   subtitle: Text("${pdata[index].description}"),
                   trailing: IconButton(
                     onPressed: () async {
-                      await Api.deleteProduct(pdata[index].id);
-                      pdata.removeAt(index);
-
-                      setState(() {});
+                      try {
+                        final productId = pdata[index].id;
+                        if (productId != null) {
+                          await Api.deleteProduct(productId);
+                          print('Product deleted successfully');
+                          pdata.removeAt(index);
+                          setState(() {});
+                        } else {
+                          print('Product id is null, cannot delete');
+                        }
+                      } catch (e) {
+                        print('Error deleting product: $e');
+                      }
                     },
                     icon: const Icon(Icons.delete),
                   ),
-                  // trailing: IconButton(
-                  //   onPressed: () async {
-                  //     Api.deleteProduct(pdata[index].id);
-                  //     pdata.removeAt(index);
-                  //     setState(() {});
-                  //   },
-                  //   icon: const Icon(Icons.delete),
-                  // ),
                 );
+
+                // return ListTile(
+                //   leading: const Icon(Icons.storage),
+                //   title: Text("${pdata[index].name}"),
+                //   subtitle: Text("${pdata[index].description}"),
+                //   trailing: IconButton(
+                //     onPressed: () async {
+                //       // await Api.deleteProduct(pdata[index].id.toString());
+                //       // pdata.removeAt(index);
+
+                //       // setState(() {});
+
+                //       final productId = pdata[index].id;
+                //       if (productId != null) {
+                //         await Api.deleteProduct(productId);
+                //         pdata.removeAt(index);
+                //         setState(() {});
+                //       }
+
+                //     },
+                //     icon: const Icon(Icons.delete),
+                //   ),
+                //   // trailing: IconButton(
+                //   //   onPressed: () async {
+                //   //     Api.deleteProduct(pdata[index].id);
+                //   //     pdata.removeAt(index);
+                //   //     setState(() {});
+                //   //   },
+                //   //   icon: const Icon(Icons.delete),
+                //   // ),
+                // );
               },
             );
           }

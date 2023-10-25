@@ -36,15 +36,17 @@ class _CreateDataState extends State<CreateData> {
             const SizedBox(
               height: 20,
             ),
-            ElevatedButton(onPressed: () {
-              var data = {
-                "pname": name.text,
-                "pprice": price.text,
-                "pdescription": description.text
-              };
-              // added map top function addProduct which also requires a map
-              Api.addProduct(data);
-            }, child: const Text('Create Data'))
+            ElevatedButton(
+                onPressed: () {
+                  var data = {
+                    "pname": name.text,
+                    "pprice": price.text,
+                    "pdescription": description.text
+                  };
+                  // added map to function addProduct which also requires a map
+                  Api.addProduct(data);
+                },
+                child: const Text('Create Data'))
           ],
         ),
       ),
