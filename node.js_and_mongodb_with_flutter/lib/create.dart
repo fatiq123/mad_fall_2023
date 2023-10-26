@@ -45,6 +45,7 @@ class _CreateDataState extends State<CreateData> {
                   };
                   // added map to function addProduct which also requires a map
                   Api.addProduct(data);
+                  Navigator.of(context).pop();
                 },
                 child: const Text('Create Data'))
           ],

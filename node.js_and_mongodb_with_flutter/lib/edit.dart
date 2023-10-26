@@ -4,62 +4,65 @@ import 'package:nodejs_backend_with_flutter/services/api.dart';
 
 class EditScreen extends StatefulWidget {
   final Product data;
-  const EditScreen({super.key, required this.data});
+
+  const EditScreen({Key? key, required this.data}) : super(key: key);
 
   @override
-  State<EditScreen> createState() => _EditScreenState();
+  _EditScreenState createState() => _EditScreenState();
 }
 
 class _EditScreenState extends State<EditScreen> {
-  TextEditingController name = TextEditingController();
-  TextEditingController price = TextEditingController();
-  TextEditingController description = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController priceController = TextEditingController();
+  final TextEditingController descriptionController = TextEditingController();
 
   @override
   void initState() {
-    // when ever the edit screen is called it instantly get data from Product object
     super.initState();
-    name.text = widget.data.name.toString();
-    price.text = widget.data.price.toString();
-    description.text = widget.data.description.toString();
+    nameController.text = widget.data.name ?? '';
+    priceController.text = widget.data.price ?? '';
+    descriptionController.text = widget.data.description ?? '';
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Edit Product'),
+        title: Text('Edit Product'),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          TextField(
-            controller: name,
-            decoration: const InputDecoration(hintText: 'Name'),
-          ),
-          TextField(
-            controller: price,
-            decoration: const InputDecoration(hintText: 'Price'),
-          ),
-          TextField(
-            controller: description,
-            decoration: const InputDecoration(hintText: 'Description'),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          ElevatedButton(
-            onPressed: () {
-              Api.updateProduct(widget.data.id, {
-                "pname": name.text,
-                "pprice": price.text,
-                "pdescription": description.text,
-                "id": widget.data.id
-              });
-            },
-            child: const Text('Update Data'),
-          )
-        ],
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            TextFormField(
+              controller: nameController,
+              decoration: InputDecoration(labelText: 'Name'),
+            ),
+            TextFormField(
+              controller: priceController,
+              decoration: InputDecoration(labelText: 'Price'),
+            ),
+            TextFormField(
+              controller: descriptionController,
+              decoration: InputDecoration(labelText: 'Description'),
+            ),
+            ElevatedButton(
+              onPressed: () async {
+                final updatedData = {
+                  'pname': nameController.text,
+                  'pprice': priceController.text,
+                  'pdescription': descriptionController.text,
+                };
+                print(
+                    'Product ID: ${widget.data.id} '); // Add this line for debugging
+                await Api.updateProduct(widget.data.id ?? '', updatedData);
+                Navigator.of(context).pop();
+              },
+              child: Text('Update Product'),
+            ),
+          ],
+        ),
       ),
     );
   }

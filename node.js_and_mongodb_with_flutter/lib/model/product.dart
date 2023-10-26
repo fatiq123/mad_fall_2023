@@ -6,12 +6,12 @@ class Product {
 
   Product({this.name, this.price, this.description, this.id});
 
-  factory Product.fromJson(Map<String, dynamic> json) {
-    return Product(
-      id: json['id'],
-      name: json['pname'],
-      price: json['pprice'],
-      description: json['pdescription']
-    );
-  }
+  // factory Product.fromJson(Map<String, dynamic> json) {
+  //   print(json);
+  //   return Product(
+  //       id: json['id'],
+  //       name: json['pname'],
+  //       price: json['pprice'],
+  //       description: json['pdescription']);
+  // }
 }

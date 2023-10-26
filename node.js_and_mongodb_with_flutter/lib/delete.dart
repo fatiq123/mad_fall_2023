@@ -62,7 +62,6 @@ class _DeleteScreenState extends State<DeleteScreen> {
                     icon: const Icon(Icons.delete),
                   ),
                 );
-
                 // return ListTile(
                 //   leading: const Icon(Icons.storage),
                 //   title: Text("${pdata[index].name}"),
