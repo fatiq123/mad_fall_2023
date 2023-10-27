@@ -40,7 +40,10 @@ class _DeleteScreenState extends State<DeleteScreen> {
               itemCount: pdata.length,
               itemBuilder: (BuildContext context, int index) {
                 return ListTile(
-                  leading: const Icon(Icons.storage),
+                  leading: const Icon(
+                    Icons.storage,
+                    color: Colors.amber,
+                  ),
                   title: Text("${pdata[index].name}"),
                   subtitle: Text("${pdata[index].description}"),
                   trailing: IconButton(
@@ -59,7 +62,10 @@ class _DeleteScreenState extends State<DeleteScreen> {
                         print('Error deleting product: $e');
                       }
                     },
-                    icon: const Icon(Icons.delete),
+                    icon: const Icon(
+                      Icons.delete,
+                      color: Colors.red,
+                    ),
                   ),
                 );
                 // return ListTile(

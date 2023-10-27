@@ -18,39 +18,53 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: const Text('node.js and mongodb'),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          ElevatedButton(
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const CreateData(),));
-            },
-            child: const Text('CREATE'),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const FetchData(),));
-            },
-            child: const Text('READ'),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const UpdateScreen(),));
-            },
-            child: const Text('UPDATE'),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const DeleteScreen(),));
-            },
-            child: const Text('DELETE'),
-          ),
-        ],
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const CreateData(),
+                    ));
+              },
+              child: const Text('CREATE'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const FetchData(),
+                    ));
+              },
+              child: const Text('READ'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const UpdateScreen(),
+                    ));
+              },
+              child: const Text('UPDATE'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const DeleteScreen(),
+                    ));
+              },
+              child: const Text('DELETE'),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'edit.dart';
 import 'model/product.dart';
@@ -36,7 +37,10 @@ class UpdateScreen extends StatelessWidget {
               itemCount: pdata.length,
               itemBuilder: (BuildContext context, int index) {
                 return ListTile(
-                  leading: const Icon(Icons.storage),
+                  leading: const Icon(
+                    Icons.storage,
+                    color: Colors.amber,
+                  ),
                   title: Text("${pdata[index].name}"),
                   subtitle: Text("${pdata[index].description}"),
                   trailing: IconButton(
@@ -50,7 +54,7 @@ class UpdateScreen extends StatelessWidget {
                         ),
                       );
                     },
-                    icon: const Icon(Icons.edit),
+                    icon: const Icon(Icons.edit, color: Colors.blue),
                   ),
                 );
               },
