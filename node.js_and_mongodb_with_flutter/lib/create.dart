@@ -18,25 +18,72 @@ class _CreateDataState extends State<CreateData> {
     return Scaffold(
       appBar: AppBar(),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            TextField(
-              controller: name,
-              decoration: const InputDecoration(hintText: 'Name'),
-            ),
-            TextField(
-              controller: price,
-              decoration: const InputDecoration(hintText: 'Price'),
-            ),
-            TextField(
-              controller: description,
-              decoration: const InputDecoration(hintText: 'Description'),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            ElevatedButton(
+        child: Padding(
+          padding: const EdgeInsets.all(10),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TextField(
+                controller: name,
+                decoration: InputDecoration(
+                  hintText: 'Enter Name',
+                  filled: true,
+                  fillColor: Theme.of(context).colorScheme.surface,
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide.none,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                        color: Theme.of(context).colorScheme.primary, width: 2),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              TextField(
+                controller: price,
+                decoration: InputDecoration(
+                  hintText: 'Enter Price',
+                  filled: true,
+                  fillColor: Theme.of(context).colorScheme.surface,
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide.none,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                        color: Theme.of(context).colorScheme.primary, width: 2),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              TextField(
+                controller: description,
+                decoration: InputDecoration(
+                  hintText: 'Enter Description',
+                  filled: true,
+                  fillColor: Theme.of(context).colorScheme.surface,
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide.none,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                        color: Theme.of(context).colorScheme.primary, width: 2),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              ElevatedButton(
                 onPressed: () {
                   var data = {
                     "pname": name.text,
@@ -47,8 +94,10 @@ class _CreateDataState extends State<CreateData> {
                   Api.addProduct(data);
                   Navigator.of(context).pop();
                 },
-                child: const Text('Create Data'))
-          ],
+                child: const Text('Create Data'),
+              )
+            ],
+          ),
         ),
       ),
     );

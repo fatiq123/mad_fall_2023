@@ -5,8 +5,8 @@ import 'package:http/http.dart' as http;
 import 'package:nodejs_backend_with_flutter/model/product.dart';
 
 class Api {
-  // static const baseUrl = "http://192.168.100.148/api/";
-  static const baseUrl = "http://10.5.116.180/api/";
+  static const baseUrl = "http://192.168.100.148/api/";
+  // static const baseUrl = "http://10.5.116.180/api/";
 
   static addProduct(Map pdata) async {
     var url = Uri.parse("${baseUrl}add_product");
@@ -181,7 +181,7 @@ class Api {
         return; // Exit early if id is invalid
       }
 
-      final url = Uri.parse(baseUrl + "update_product/$id");
+      final url = Uri.parse("${baseUrl}update_product/$id");
       final response = await http.put(
         url,
         headers: {'Content-Type': 'application/json'},
@@ -223,7 +223,7 @@ class Api {
         return; // Exit early if id is invalid
       }
 
-      final url = Uri.parse(baseUrl + "delete_product/$id");
+      final url = Uri.parse("${baseUrl}delete_product/$id");
       final response = await http.delete(url); // Use DELETE request
 
       if (response.statusCode == 200) {
