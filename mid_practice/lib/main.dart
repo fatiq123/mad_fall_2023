@@ -9,8 +9,9 @@ void showCustomFullScreenModal(BuildContext context) {
       return Scaffold(
         backgroundColor: Colors.transparent,
         body: Container(
-          constraints:
-              BoxConstraints.expand(height: MediaQuery.of(context).size.height),
+          constraints: BoxConstraints.expand(
+            height: MediaQuery.of(context).size.height,
+          ),
           child: Stack(
             children: [
               // Curved design at the top with a yellow background
@@ -65,7 +66,7 @@ void showCustomFullScreenModal(BuildContext context) {
               ),
               // White card at the bottom
               Positioned(
-                top: MediaQuery.of(context).size.height * 0.25,
+                top: MediaQuery.of(context).size.height * 0.17,
                 left: 16,
                 right: 16,
                 child: Card(
@@ -87,38 +88,38 @@ void showCustomFullScreenModal(BuildContext context) {
                           height: 250,
                         ),
                         const SizedBox(
-                          height: 40,
+                          height: 80,
                         ),
                         const Text(
                           'Note: This is a new app launched in November 2023, not the app with the same name that has been removed from the Google Play. Please pay attention!',
                           style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.black,
-                          ),
+                              fontSize: 16,
+                              color: Colors.black,
+                              fontWeight: FontWeight.w400),
                         ),
-                        const SizedBox(height: 20),
+                        const SizedBox(height: 30),
                         ElevatedButton(
                           onPressed: () {
                             // Your button action goes here
                           },
                           style: ElevatedButton.styleFrom(
-                            primary: Colors.black12, // Background color
+                            primary: Colors.grey, // Background color
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(
-                                16.0,
+                                28.0,
                               ), // Adjust the border radius as needed
                             ),
                           ),
                           child: Padding(
                             padding: const EdgeInsets.all(8),
                             child: Row(
-                              mainAxisSize: MainAxisSize.min,
+                              // mainAxisSize: MainAxisSize.min,
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 Image.asset(
                                   'assets/search.png',
-                                  height: 40,
-                                  width: 40,
+                                  height: 30,
+                                  width: 30,
                                 ),
                                 const Text(
                                   'Sign In With Google',
@@ -130,6 +131,50 @@ void showCustomFullScreenModal(BuildContext context) {
                               ],
                             ),
                           ),
+                        ),
+                        const SizedBox(
+                          height: 80,
+                        ),
+                        Column(
+                          children: [
+                            const Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'By logging in,you agree to Privacy Policy',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                    color: Colors.black26,
+                                    fontSize: 14,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Text(
+                                  'Terms of Use',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w700,
+                                    color: Colors.yellow[300],
+                                    letterSpacing: 1,
+                                  ),
+                                ),
+                                Text(
+                                  'Privacy Policy',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.normal,
+                                    color: Colors.yellow[300],
+                                    letterSpacing: 1,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
                       ],
                     ),
@@ -154,6 +199,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: MyHomePage(),
     );
   }
